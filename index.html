@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>polarsharp</title>
+  <style rel="stylesheet">
+/* General Styles */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #333;
+  color: white;
+}
+
+/* Container */
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  text-align: center;
+}
+
+/* Header */
+header {
+
+    padding: 50px;
+    background: #000;
+    text-align: center;
+}
+header h1 {
+  font-size:1.5rem;
+  margin-bottom: 20px;
+  color: #ffcc00;
+  text-shadow: 2px 2px 5px #000;
+}
+
+/* Questions Section */
+#questions {
+  text-align: left;
+  margin-bottom: 20px;
+}
+
+.question {
+  margin: 20px 0;
+  padding: 10px;
+  border: 1px solid #444;
+  border-radius: 5px;
+  background-color: #222;
+}
+
+.question p {
+  margin: 10px 0;
+}
+
+/* Submit Button */
+#submit {
+  padding: 10px 20px;
+  font-size: 1rem;
+  color: black;
+  background-color: #ffcc00;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+#submit:hover {
+  background-color: #e6b800;
+  transform: scale(1.05);
+}
+
+/* Footer */
+footer {
+padding: 20px;
+  margin-top: 0px;
+  font-size: 1.0rem; 
+  color: #333;
+background: #000;
+
+}
+footer p {
+    color: #777;
+}
+.social-media a {
+    color: #aaa;
+    margin: 0 10px;
+    text-decoration: none;
+}
+.social-media a:hover {
+    color: #ffa500;
+}
+</style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Work, Energy & Power - Numerical Test</h1>
+<h4> PRESENTED BY POLAR SHARP</h4>
+    </header>
+    <main>
+      <form id="quizForm">
+        <div id="questions"></div>
+        <button type="button" id="submit">Submit</button>
+      </form>
+    </main>
+    <footer>
+    <footer>
+        <p>&copy; 2024 Powered by Polar Sharp</p>
+        <div class="social-media">
+            <a href="https://facebook.com" target="_blank">Facebook</a>
+            <a href="https://twitter.com" target="_blank">Twitter</a>
+            <a href="https://instagram.com" target="_blank">Instagram</a>
+        </div>
+
+    </footer>
+  </div>
+  <script>       const questions = [
+  {
+    question: "A force of 10 N acts on a body, moving it by 5 m horizontally. Calculate the work done.",
+    options: ["50 J", "25 J", "15 J", "0 J"],
+    correct: 0
+  },
+  {
+    question: "A block of 5 kg is lifted to a height of 2 m. Calculate the work done against gravity (g = 9.8 m/s²).",
+    options: ["49 J", "98 J", "9.8 J", "0 J"],
+    correct: 1
+  },
+  {
+    question: "A spring with k = 100 N/m is compressed by 0.2 m. Find the potential energy stored.",
+    options: ["2 J", "1 J", "0.5 J", "4 J"],
+    correct: 3
+  },
+  {
+    question: "A body of mass 2 kg is moving at 10 m/s. Find its kinetic energy.",
+    options: ["20 J", "100 J", "200 J", "400 J"],
+    correct: 1
+  },
+  {
+    question: "A machine lifts a 500 kg object to a height of 10 m in 10 seconds. Find the power. (g = 9.8 m/s²)",
+    options: ["490 W", "4900 W", "5000 W", "100 W"],
+    correct: 1
+  },
+  {
+    question: "A 2 kg object falls freely from a height of 5 m. Find its velocity just before hitting the ground. (g = 9.8 m/s²)",
+    options: ["20 m/s", "9.9 m/s", "14 m/s", "10 m/s"],
+    correct: 3
+  },
+  {
+    question: "A cyclist applies a 50 N force to move a bicycle 100 m in 10 s. Find the power.",
+    options: ["50 W", "1000 W", "500 W", "250 W"],
+    correct: 2
+  },
+  {
+    question: "A car of mass 1000 kg is moving at 20 m/s. Calculate its kinetic energy.",
+    options: ["20,000 J", "400,000 J", "200,000 J", "40,000 J"],
+    correct: 2
+  },
+  {
+    question: "A bullet of mass 0.05 kg is fired at 400 m/s. Find its kinetic energy.",
+    options: ["4000 J", "8000 J", "1000 J", "2000 J"],
+    correct: 1
+  },
+  {
+    question: "A pump delivers 200 liters of water per second to a height of 10 m. Find the power required. (density of water = 1000 kg/m³)",
+    options: ["19.6 kW", "1.96 kW", "196 W", "9.8 kW"],
+    correct: 0
+  },
+  {
+    question: "A spring with a constant of 200 N/m is stretched by 0.1 m. Calculate the work done on the spring.",
+    options: ["1 J", "2 J", "0.5 J", "10 J"],
+    correct: 0
+  },
+  {
+    question: "A 10 kg mass is dropped from a height of 20 m. Find the kinetic energy just before hitting the ground. (g = 9.8 m/s²)",
+    options: ["1960 J", "2000 J", "1000 J", "980 J"],
+    correct: 0
+  },
+  {
+    question: "A person does 500 J of work to push a box. The box moves 10 m. Find the applied force.",
+    options: ["5 N", "100 N", "10 N", "50 N"],
+    correct: 3
+  },
+  {
+    question: "A force of 100 N is applied at an angle of 60° to the horizontal. The object moves 5 m horizontally. Find the work done.",
+    options: ["100 J", "500 J", "250 J", "400 J"],
+    correct: 2
+  },
+  {
+    question: "A body moves 5 m under a force of 20 N, making an angle of 45° with displacement. Find the work done.",
+    options: ["100√2 J", "50√2 J", "10 J", "20 J"],
+    correct: 1
+  },
+  {
+    question: "A block of 5 kg is pushed up an incline of 30° for a distance of 10 m with a force of 100 N. Find the work done.",
+    options: ["2000 J", "500 J", "800 J", "1000 J"],
+    correct: 3
+  },
+  {
+    question: "A motor lifts a 300 kg object to a height of 5 m in 6 seconds. Find the power. (g = 9.8 m/s²)",
+    options: ["2450 W", "2500 W", "3000 W", "2000 W"],
+    correct: 0
+  },
+  {
+    question: "A 50 kg mass is lifted 20 m in 5 seconds. Find the power developed. (g = 9.8 m/s²)",
+    options: ["1960 W", "1000 W", "980 W", "500 W"],
+    correct: 0
+  },
+  {
+    question: "A block slides 10 m on a surface under a force of 5 N. Calculate the work done.",
+    options: ["10 J", "25 J", "100 J", "50 J"],
+    correct: 3
+  },
+  {
+    question: "An engine generates 5000 J of work in 5 seconds. Find the power developed.",
+    options: ["2000 W", "500 W", "2500 W", "1000 W"],
+    correct: 3
+  },
+  {
+    question: "A boy lifts a 15 kg bucket vertically upward for 3 m. Find the work done. (g = 9.8 m/s²)",
+    options: ["441 J", "45 J", "490 J", "500 J"],
+    correct: 0
+  },
+  {
+    question: "A car moves 100 m with a force of 1000 N applied. Find the work done.",
+    options: ["10,000 J", "100,000 J", "5000 J", "50,000 J"],
+    correct: 1
+  },
+  {
+    question: "A machine does 2000 J of work in 20 seconds. Find its power.",
+    options: ["10 W", "200 W", "50 W", "100 W"],
+    correct: 3
+  },
+  {
+    question: "A mass of 2 kg is lifted to a height of 10 m. Find its potential energy. (g = 9.8 m/s²)",
+    options: ["196 J", "20 J", "98 J", "500 J"],
+    correct: 0
+  },
+  {
+    question: "A force of 40 N moves a body by 2 m at 30° to the displacement. Find the work done.",
+    options: ["80√3 J", "40√3 J", "40 J", "80 J"],
+    correct: 1
+  },
+  {
+    question: "A 2 kg block slides down a 10 m incline at an angle of 30°. Find the work done by gravity. (g = 9.8 m/s²)",
+    options: ["98 J", "196 J", "49 J", "100 J"],
+    correct: 0
+  },
+  {
+    question: "A spring with a force constant of 150 N/m is compressed by 0.3 m. Find the potential energy stored.",
+    options: ["6.75 J", "13.5 J", "15 J", "4.5 J"],
+    correct: 1
+  },
+  {
+    question: "A force of 10 N acts on an object and moves it 3 meters in the direction of the force. What is the work done?",
+    options: ["10 J", "20 J", "40 J", "30 J"],
+    correct: 3
+  },
+  {
+    question: "A body of mass 4 kg moves with a velocity of 5 m/s. What is its kinetic energy?",
+    options: ["10 J", "25 J", "50 J", "100 J"],
+    correct: 2
+  },
+  {
+    question: "What is the potential energy of a 2 kg object raised to a height of 10 m? (Take g = 9.8 m/s²)",
+    options: ["300 J", "200 J", "100 J", "50 J"],
+    correct: 1
+  },
+  {
+    question: "A 5 kg block is lifted 3 meters. Calculate the work done against gravity. (g = 9.8 m/s²)",
+    options: ["147 J", "50 J", "30 J", "100 J"],
+    correct: 0
+  },
+  {
+    question: "If a body does 250 J of work in 5 seconds, what is the power?",
+    options: ["60 W", "100 W", "50 W", "25 W"],
+    correct: 2
+  },
+  {
+    question: "A force of 20 N is applied to an object for a distance of 10 m at an angle of 60°. Find the work done.",
+    options: ["200 J", "300 J", "150 J", "100 J"],
+    correct: 3
+  },
+  {
+    question: "A spring is compressed by 0.3 m with a force constant of 50 N/m. What is the energy stored in the spring?",
+    options: ["2.25 J", "3.75 J", "5 J", "1.5 J"],
+    correct: 1
+  },
+  {
+    question: "A car of mass 1500 kg is moving with a velocity of 25 m/s. What is its kinetic energy?",
+    options: ["400,000 J", "450,000 J", "500,000 J", "200,000 J"],
+    correct: 2
+  },
+  {
+    question: "A 0.5 kg object is moving at 10 m/s. Find the kinetic energy.",
+    options: ["25 J", "5 J", "50 J", "100 J"],
+    correct: 0
+  },
+  {
+    question: "A ball is thrown vertically upwards with a speed of 20 m/s. Find its potential energy at a height of 10 m.",
+    options: ["400 J", "196 J", "100 J", "50 J"],
+    correct: 1
+  },
+  {
+    question: "A person lifts a weight of 10 kg to a height of 5 m in 2 seconds. What is the power developed?",
+    options: ["245 W", "400 W", "490 W", "200 W"],
+    correct: 2
+  },
+  {
+    question: "A body of mass 1.5 kg moves with a velocity of 10 m/s. What is its kinetic energy?",
+    options: ["50 J", "25 J", "75 J", "100 J"],
+    correct: 2
+  },
+  {
+    question: "A machine does 4000 J of work in 10 seconds. What is the power of the machine?",
+    options: ["500 W", "1000 W", "250 W", "200 W"],
+    correct: 1
+  },
+  {
+    question: "A block is moving under the action of a constant force of 8 N for 4 m. Calculate the work done.",
+    options: ["23 J", "32 J", "12 J", "16 J"],
+    correct: 1
+  },
+  {
+    question: "An object is lifted vertically by a force of 50 N for 4 meters. Calculate the work done.",
+    options: ["200 J", "100 J", "150 J", "250 J"],
+    correct: 1
+  },
+  {
+    question: "A person lifts a 20 kg box to a height of 3 meters. Find the potential energy of the box. (g = 9.8 m/s²)",
+    options: ["588 J", "500 J", "1000 J", "700 J"],
+    correct: 0
+  },
+  {
+    question: "A motor lifts a 50 kg load to a height of 10 m in 10 seconds. What is the power?",
+    options: ["200 W", "1000 W", "100 W", "500 W"],
+    correct: 3
+  },
+  {
+    question: "A spring has a force constant of 200 N/m. If it is stretched by 0.5 m, what is the potential energy stored?",
+    options: ["50J", "25 J", "100 J", "200 J"],
+    correct: 1
+  },
+  {
+    question: "What is the power required to lift a 200 kg mass to a height of 5 meters in 10 seconds? (g = 9.8 m/s²)",
+    options: ["960 W", "200 W", "500 W", "1000 W"],
+    correct: 0
+  },
+  {
+    question: "A body of mass 2 kg is moving with a velocity of 5 m/s. What is its kinetic energy?",
+    options: ["5 J", "10 J", "15 J", "25 J"],
+    correct: 3
+  },
+  {
+    question: "A machine lifts a 500 N object by 2 meters. What is the work done by the machine?",
+    options: ["1500 J", "500 J", "200 J", "1000 J"],
+    correct: 3
+  },
+  {
+    question: "A 3 kg body moves with a velocity of 6 m/s. What is the kinetic energy?",
+    options: ["54 J", "108 J", "72 J", "60 J"],
+    correct: 0
+  },
+  {
+    question: "A 200 N force is applied to an object at an angle of 60°. The object moves 10 meters. What is the work done?",
+    options: ["2000 J", "1000 J", "500 J", "400 J"],
+    correct: 1
+  },
+  {
+    question: "A force of 100 N moves a body 2 meters horizontally. What is the work done?",
+    options: ["400 J", "300 J", "100 J", "200 J"],
+    correct: 3
+  },
+  {
+    question: "A 10 kg block is pulled 5 meters by a force of 50 N. Calculate the work done.",
+    options: ["250 J", "200 J", "150 J", "100 J"],
+    correct: 0
+  },
+  {
+    question: "A 50 kg body moves with a velocity of 12 m/s. What is the kinetic energy?",
+    options: ["3600 J", "1800 J", "2400 J", "1200 J"],
+    correct: 0
+  },
+  {
+    question: "A 4 kg block is moving at 5 m/s. Find the work done to stop the block.",
+    options: ["30 J", "60 J", "40 J", "50 J"],
+    correct: 3
+  },
+  {
+    question: "A machine does 1000 J of work in 10 seconds. What is the power of the machine?",
+    options: ["300 W", "200 W", "100 W", "50 W"],
+    correct: 2
+  }
+];
+// Generate questions dynamically
+const questionsContainer = document.getElementById("questions");
+
+questions.forEach((q, index) => {
+  const questionDiv = document.createElement("div");
+  questionDiv.className = "question";
+
+  const questionText = document.createElement("p");
+  questionText.textContent = `${index + 1}. ${q.question}`;
+  questionDiv.appendChild(questionText);
+
+  q.options.forEach((option, i) => {
+    const label = document.createElement("label");
+    label.style.display = "block";
+
+    const input = document.createElement("input");
+    input.type = "radio";
+    input.name = `question${index}`;
+    input.value = i;
+
+    label.appendChild(input);
+    label.appendChild(document.createTextNode(option));
+    questionDiv.appendChild(label);
+  });
+
+  questionsContainer.appendChild(questionDiv);
+});
+
+// Handle submission
+document.getElementById("submit").addEventListener("click", () => {
+  let score = 0;
+  let feedback = ''; // To store the feedback for each question
+  
+  questions.forEach((q, index) => {
+    const selectedOption = document.querySelector(`input[name="question${index}"]:checked`);
+    const questionDiv = document.querySelectorAll('.question')[index];
+    const feedbackDiv = document.createElement("div");
+    feedbackDiv.className = "feedback";
+
+    if (selectedOption) {
+      if (parseInt(selectedOption.value) === q.correct) {
+        score++;
+        feedbackDiv.textContent = `Question ${index + 1}: Correct`;
+        feedbackDiv.style.color = "green";
+      } else {
+        feedbackDiv.textContent = `Question ${index + 1}: Incorrect (Correct answer: ${q.options[q.correct]})`;
+        feedbackDiv.style.color = "red";
+      }
+    } else {
+      feedbackDiv.textContent = `Question ${index + 1}: No answer selected`;
+      feedbackDiv.style.color = "orange";
+    }
+
+    questionDiv.appendChild(feedbackDiv);
+  });
+
+  // Display total score
+  alert(`You scored ${score} out of ${questions.length}`);
+});
+   </script>
+   
+</body>
+</html>
